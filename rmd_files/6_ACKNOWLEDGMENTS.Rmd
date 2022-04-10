@@ -1,0 +1,10 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+EOC thanks Deb Nichols, John Watanabe, Bob Kelly, and the Dartmouth Coach.  
+
+\newpage
+
+# REFERENCES CITED

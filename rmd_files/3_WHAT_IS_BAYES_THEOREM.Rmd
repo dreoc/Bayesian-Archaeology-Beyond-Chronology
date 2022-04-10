@@ -1,0 +1,92 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+Bayes’ theorem is the algebraic formalization of the probabilistic table work that we conducted in the previous section using a discrete event. The theorem is most useful when a conditional probability statement is known and one wishes to obtain its inverse conditional statement. For example, from the previous model, we know that P(Butchery mark present | Dog) = 0.13. If we wish to know the inverse conditional statement P(Dog | Butchery mark present), we can calculate the inverse conditional statement using:
+
+$$P(\text{Dog | Butchery mark present}) = \dfrac{P(\text{Butchery mark present | Dog})\times P(\text{Dog})}{P(\text{Butchery mark present})}$$
+
+Tables 1 and 2 provide the necessary values to plug into this expression so that:
+
+$$P(\text{Dog | Butchery mark present}) = \dfrac{\left(\frac{0.09}{0.71}\right)\times 0.71}{0.32} = 0.28.$$
+
+When generalized, the algorithm applied here is known as Bayes’ theorem. It is usually exemplified by considering two related events: A and B. Simply put, Bayes’ theorem states that:
+
+$$P(A|B) = \dfrac{P\left(B|A\right)\times P(A)}{P(B)}$$
+In this case, to obtain the conditional probability of A given B, P(A|B), one needs to divide the joint probability of A and B, P(A and B), by the marginal probability of B, P(B). The product of P(B|A) and P(A) is the joint probability, P(A and B). The formula then generalizes to:
+
+$$P(A/B) = \dfrac{P\left(A\text{ and }B\right)}{P(B)}$$,
+
+where the joint probability is divided by the marginal P(B). Statisticians call P(A|B) the posterior probability of A given B; P(B|A) the inverse conditional (or likelihood) of B given A; and P(A) the prior probability of A.
+
+
+### The Bayesian archaeologist continued
+
+After a few days, the reporter acquires more information from the continued excavations at the Monico-2 village. The frequencies are described in Table 3 and joint probabilities and 4 below. 
+The reporter is quite excited to inform the archaeologist that excavators had recovered 10 dogs, all but one of which had butchery marks on them. By contrast, the archaeologists at the Monico-2 site had recovered only one coyote that exhibited butchery marks on the remains. The researchers at Monico-2 used an appropriate NHST test statistic, the one-sided z-test for proportions [@diez_openintro_2019: 194-197], with continuity correction, to test whether the observed dog butchery rate (9/10) was statistically significantly greater than 50%- the default null hypothesis in this test. The Monico-2 archaeologists rejected the null hypothesis with a p-value <0.05 (z-ratio = 2.21, mean = 5, sdev = 1.58, p = 0.013). Becasue of the small sample size, they also conducted a one-sided binomial test, which yielded results in line with the z-test results (successes = 9, trials = 10, p = 0.01074). Based on these statistically significant results, the monico-2 archaeologists told the reporter that the majority of dogs were butchered at the site. Moreover, according to the reporter, the archaeologists also suggested that the evidence and results of the atatistical analysis indicated that the people at Monico-2 village included dogs as an important part of their diet. In light of this evidence, the reporter begins to question the ethnographic record on the dietary taboos of the Monico.
+
+```{r, echo=FALSE, message=FALSE}
+library(dplyr)
+library(kableExtra)
+cap<-"Frequencies of individual animals and observed butchery marks from the Monico-2 village. Note the small total number of individuals and the particularly tiny sample of coyote individuals."
+
+df2<- data.frame ( a= c("Present", "Absent", "Total Individuals"),
+                  Coyote = c(1,0,1),
+                  Dogs = c(9,1,10),
+                  Total_Butchery_marks = c(10,1,"Total = 1"))
+
+df2<- data.frame(df2[-1], row.names=df2[,1]) 
+
+kbl(df2, caption = cap) %>% kable_classic_2() %>% 
+    add_header_above(c("", "Individuals of Each Species" = 2, "" )) %>%
+    column_spec(4, color ="white", background = "black") %>%
+    row_spec(3, bold=T, color="white", background ="black") %>% 
+    kableExtra::pack_rows("Butchery Marks", 1,2)%>%
+  kable_styling(latex_options = "HOLD_position")
+```
+
+
+
+```{r, echo=FALSE, message=FALSE}
+library(dplyr)
+library(kableExtra)
+cap<-"Joint probabilities of individual animals and observed butchery marks from the Monico-2 village. Note the larger proportion of dog bones with butchery marks when compared to the sample from Monico-1."
+
+df2<- data.frame ( a= c("P(Present)", "P(Absent)", "Marginal Species"),
+                  "P(Coyote)"= c(9/100, 0/100, 9/100),
+                  "P(Dogs)" = c(82/100, 9/100, 91/100),
+                  Marginal_Butchery_marks = c(91/100,9/100,"Total = 1"))
+
+df2<- data.frame(df2[-1], row.names=df2[,1]) 
+
+kbl(df2, caption = cap) %>% kable_paper %>% 
+    add_header_above(c("", "Species Identified" = 2, "" )) %>%
+    column_spec(4, color ="white", background = "black") %>%
+    row_spec(3, bold=T, color="white", background ="black") %>% 
+    kableExtra::pack_rows ("Butchery Marks", 1,2)%>%
+  kable_styling(latex_options = "HOLD_position")
+
+```
+
+
+The archaeologist explains that the posterior probabilities of dog and coyote butchery drawn from the (much larger) Monico-1 faunal assemblage have become new “prior” information on the probabilities that Monico villagers butchered dogs and coyotes. These quantities can be represented by: 
+
+$$P(\text{Butchery mark present | Dog})_\text{Monico -1} = \dfrac{9}{71}=0.13,$$
+
+and 
+
+$$P(\text{Butchery mark present | Coyote})_\text{Monico -1} = \dfrac{23}{29}=0.79,$$
+
+The archaeologist’s knowledge about the degree to which the Monico-1 villagers butchered dogs and coyotes can be updated in a new iteration of Bayes’ theorem which includes the data from Monico-2. To account for the archaeological context from which the calculations derive, the archaeologist adds the subscripts Monico-1 and Monico-2 to the equation terms, as follows:
+
+\begin{align*}
+P(\text{Butchery mark present | Dog})_\text{Monico -2} =& \dfrac{P(\text{Dog | Butchery})_\text{Monico -2}\times P(\text{Dog | Butchery})_\text{Monico -1}}{P(\text{Dog})_\text{Monico -2}}\\=&\dfrac{\frac{0.82}{0.91}\times 0.13}{0.91}\\=&0.13.
+\end{align*}
+
+Adding in the dog data from Monico-2 causes the probability of dog butchery to decrease slightly (from 0.127 to 0.126, but rounded to 0.13). The same operation can be conducted using the prior from the first excavation and the new coyote data:
+
+\begin{align*}
+P(\text{Butchery mark present | Coyote})_\text{Monico -2} =& \dfrac{P(\text{Coyote | Butchery})_\text{Monico -2}\times P(\text{Coyote | Butchery})_\text{Monico -1}}{P(\text{Coyote})_\text{Monico -2}}\\=&\dfrac{\frac{0.09}{0.91}\times 0.79}{0.09}\\=&0.87. \end{align*}
+
+In this case, after updating the data, the new posterior probability of coyote butchery is also higher (changing even more from the prior probability than in the case of dogs). The archaeologist explains this to the reporter. Furthermore, the archaeologist urges caution given that the data and resulting probabilities from the original site were derived from a sample of 100 individuals, whereas the current selection represents a total of only 11. Although the probability calculations are correct, it would be prudent to wait for more data, as the excavation at Monico-2 is ongoing. However, the archaeologist's Bayesian analysis suggests that, at this point, we should not expect butchery marks on any newly discovered dogs at the Monico-2 site. 
