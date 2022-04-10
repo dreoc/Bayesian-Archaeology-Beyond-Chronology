@@ -9,14 +9,14 @@ author:
   - ^1^Department of Anthropology, Purdue University, West Lafayette, Indiana, USA
   - ^2^Department of Anthropology, University of Iowa, Iowa City, Iowa, USA
   - ^3^School of Mathematics and Statistics, University of Sheffield, Sheffield, UK
-  - "_"
+  - " "
   - "**Preprint of Manuscript accepted for publication by Advances in Archaeological Practice.**"
   - "*Corresponding author"
   -   "email: eoc@purdue.edu"
 date: 
-  - "_"
+  - " "
   - "*R Markdown version last compiled on `r format(Sys.time(), '%A %B %d %Y, %X, %Z')`*"
-  - "_"
+  - " "
 indent: yes
 header-includes:
     - \usepackage{setspace}\doublespacing
