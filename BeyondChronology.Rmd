@@ -43,6 +43,7 @@ library(HDInterval)
 library(ggplot2)
 library(tidyr)
 library(ggrepel)
+library(ggtext)
 ```
 \newpage
 
