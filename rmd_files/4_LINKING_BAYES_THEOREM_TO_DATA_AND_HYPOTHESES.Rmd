@@ -70,6 +70,7 @@ library(dplyr)
 library(ggplot2)
 library(tidyr)
 library(ggrepel)
+library(ggtext)
 ```
 ```{r, echo=FALSE}
 # new ggplot theme ---------------------------------------------------------
@@ -141,8 +142,8 @@ d<-data %>%
   scale_color_gradient(low="#ffd82b", high="#F3010A")+ #red
   
   labs(
-    x = paste("Proportion of Dogs with Butchery Marks at Monico Archaeological Sites (\u03B8)"),
-    y = paste("Prior Probability, P(\u03B8)")
+    x = paste("Proportion of Dogs with Butchery Marks at Monico Archaeological Sites (*\u03B8*)"),
+    y = paste("Prior Probability, P(*\u03B8*)")
   )+
   theme(
     axis.ticks.x = element_line(),
@@ -153,7 +154,7 @@ d<-data %>%
     #axis.line = element_line(color = "white"),
     #axis.ticks = element_line(color = "white"),
   )+
-  coord_cartesian(xlim = c(-0.005,1))
+  coord_cartesian(xlim = c(-0.005,1)) + theme(axis.title.x = element_markdown(), axis.title.y = element_markdown())
 
 ggsave(filename = "../output/figures/figure3.png", plot = d, width = 8, height = 5, units = 'in', dpi = 400)
 ```
@@ -238,14 +239,14 @@ data_plot4 %>%
                      limits = c(0,0.4),
                      breaks = seq(0,0.4,0.1))+
   labs(
-    title = paste("Likelihood Distribution of \u03B8"),
-    x = paste("Proportion of Dogs with Butchery Marks at Monico Archaeological Sites (\u03B8)"),
-    y = paste("Likelihood,  P(x|\u03B8)")
+    title = paste("Likelihood Distribution of *\u03B8*"),
+    x = paste("Proportion of Dogs with Butchery Marks at Monico Archaeological Sites (*\u03B8*)"),
+    y = paste("Likelihood,  P(x|*\u03B8*)")
   )+
   theme(
     plot.title = element_text(hjust = 0.5, size = 20)
   )+
-  coord_cartesian(xlim = c(0,1))
+  coord_cartesian(xlim = c(0,1)) + theme(plot.title = element_markdown(), axis.title.x = element_markdown(), axis.title.y = element_markdown())
 
 ggsave(filename = "../output/figures/figure4.png",  width = 8, height = 5, units = 'in', dpi = 400)
 ```
@@ -302,13 +303,13 @@ data_plot5 %>%
                  limits = c(-0.1,1)
   )+
   labs(
-    x = paste("Proportion of Dogs with Butchery Marks at Monico Archaeological Sites (\u03B8)"),
-    y = paste("Prior, P(\u03B8)")
+    x = paste("Proportion of Dogs with Butchery Marks at Monico Archaeological Sites (*\u03B8*)"),
+    y = paste("Prior, P(*\u03B8*)")
   )+
   theme(
     axis.ticks = element_line()
   )+
-  coord_cartesian(xlim = c(-0.005,1))
+  coord_cartesian(xlim = c(-0.005,1)) + theme(axis.title.x = element_markdown(), axis.title.y = element_markdown())
 
 ggsave(filename = "../output/figures/figure5.png",  width = 8, height = 5, units = 'in', dpi = 400)
 ```
@@ -408,12 +409,12 @@ data_plot6 %>%
   scale_x_continuous(breaks = seq(0,1,0.1),
                      expand = c(0,0.01))+
   labs(
-    x = paste("Proportion of Dogs with Butchery Marks at Monico Archaeological Sites (\u03B8)"),
+    x = paste("Proportion of Dogs with Butchery Marks at Monico Archaeological Sites (*\u03B8*)"),
     y = paste("Probability Density")
   )+
   theme(
     legend.position = "none"
-  )
+  ) + theme(axis.title.x = element_markdown(), axis.title.y = element_markdown())
 
 ggsave(filename = "../output/figures/figure6.png",  width = 8, height = 5, units = 'in', dpi = 400)
 ```
@@ -470,13 +471,13 @@ data_plot7 %>%
   scale_x_continuous(breaks = seq(0,1,0.1),
                      expand = c(0,0.01))+
   labs(
-    x = paste("Proportion of Dogs with Butchery Marks at Monico Archaeological Sites (\u03B8)"),
-    y = paste("Posterior,  P(\u03B8|x)")
+    x = paste("Proportion of Dogs with Butchery Marks at Monico Archaeological Sites (*\u03B8*)"),
+    y = paste("Posterior,  P(*\u03B8*|x)")
   )+
   theme(
     legend.position = "none"
   )+
-  coord_cartesian(xlim = c(0,0.76))
+  coord_cartesian(xlim = c(0,0.76)) + theme(axis.title.x = element_markdown(), axis.title.y = element_markdown())
 
 ggsave(filename = "../output/figures/figure7.png",  width = 8, height = 5, units = 'in', dpi = 400)
 ```
