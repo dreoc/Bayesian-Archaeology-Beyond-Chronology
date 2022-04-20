@@ -3,7 +3,7 @@ output:
   pdf_document: default
   html_document: default
 ---
-"No permits are required for this work. EOC thanks Deb Nichols, John Watanabe, Sophie Nichols-Watanabe, Robert (Bob) L. Kelly, and the Dartmouth Coach. Amanda Veile, Mike Shott, Eduardo Fernandez-Duque, and two anonymous reviewers provided constructive comments on earlier drafts of this manuscript."    
+This work did not require permits. EOC is thankful to Deb Nichols, John Watanabe, Sophie Nichols-Watanabe, Robert (Bob) L. Kelly, and the Dartmouth Coach for inspiring and facilitating the development of some concepts in this paper. In addition, Amanda Veile, Mike Shott, Eduardo Fernandez-Duque, and two anonymous reviewers provided constructive comments on earlier drafts of this manuscript. Finally, Sarah Herr and the AAP editorial team were delightful and made the submission and peer-review process fantastic.    
 
 \newpage
 

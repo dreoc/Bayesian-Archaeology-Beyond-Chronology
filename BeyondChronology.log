@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021/W32TeX) (preloaded format=xelatex 2022.3.11)  18 APR 2022 22:58
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021/W32TeX) (preloaded format=xelatex 2022.3.11)  20 APR 2022 13:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -925,19 +925,19 @@ File: ./output/figures/figure6.png Graphic file (type bmp)
 [26]
 File: ./output/figures/figure7.png Graphic file (type bmp)
 <./output/figures/figure7.png>
-[27] [28] [29] [30] [31] [32] [33]
+[27] [28] [29] [30] [31] [32]
 Missing character: There is no α (U+03B1) in font [lmroman10-regular]:mapping=tex-text;!
-[34] [35] [36] (./BeyondChronology.aux)
+[33] [34] [35] (./BeyondChronology.aux)
 Package rerunfilecheck Info: File `BeyondChronology.out' has not changed.
 (rerunfilecheck)             Checksum: 6EC342B0660B6149D5E9A6BA609942E4;3737.
  ) 
 Here is how much of TeX's memory you used:
  20166 strings out of 478179
  375679 string characters out of 5852651
- 829227 words of memory out of 5000000
+ 829229 words of memory out of 5000000
  40471 multiletter control sequences out of 15000+600000
  475832 words of font info for 84 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  86i,12n,121p,513b,560s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on BeyondChronology.pdf (36 pages).
+Output written on BeyondChronology.pdf (35 pages).
