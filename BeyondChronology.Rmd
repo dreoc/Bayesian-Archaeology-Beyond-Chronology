@@ -46,6 +46,11 @@ library(ggrepel)
 library(ggtext)
 ```
 \newpage
+## ABSTRACT
+
+```{r child= "rmd_files/0_ABSTRACT.Rmd"}
+
+```
 
 ## INTRODUCTION
 
