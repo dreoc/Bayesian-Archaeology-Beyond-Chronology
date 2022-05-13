@@ -1,0 +1,94 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+### El Arqueólogo Bayesiano y la Cultura Monico
+
+La «cultura Monico» es un grupo ficticio de personas que podrían haber vivido entre el presente etnográfico y hace mucho tiempo en múltiples entornos ambientales y contextos socioculturales en todo el mundo. El registro arqueológico imaginario del Monico es bien conocido. En general, su cultura material refleja patrones de economías de forrajeo, agricultura y pastoreo. Las dinámicas socioculturales de Monico son amplias. Van desde prácticas igualitarias exhibidas en campamentos altamente móviles hasta una mayor complejidad social derivada de asentamientos más permanentes. Algunos expertos de Monico argumentan que los asentamientos posteriores de Monico muestran evidencia de producción intensiva de alimentos, comercio de productos exóticos y una organización política altamente centralizada administrada por una élite cada vez más jerárquica. (Figura 1).     
+```{r fig1, echo=FALSE, message=FALSE, warning=FALSE, fig.align = "center",out.width= "85%", fig.cap="Una reconstrucción de la cultura arqueológica ficticia de Monico, del sitio Monico-1 (ver texto a continuación).", fig.pos="H"}
+knitr::include_graphics("./output/figures/figure1.png")
+```
+Un famoso arqueólogo bayesiano, una autoridad en Monico, ha excavado un sitio del período posterior al contacto asociado con esta cultura. El trabajo de excavación en el sitio, llamado Monico-1, ha producido un conjunto de fauna impresionante entre la cultura material ampliamente diversa. La arqueofauna está compuesta por dos especies de animales: «perro» y «coyote». Los animales individuales de ambas especies están representados por esqueletos completos. En consecuencia, en este informe, el arqueólogo utiliza el término «individuo» para referirse a perros o coyotes completos. Asimismo, cuando el arqueólogo menciona «el número de» perros o coyotes, se refiere a un conteo de individuos completos de la respectiva especie. Hasta el momento, el arqueólogo ha identificado 100 de estos individuos y los ha asignado a sus respectivas especies. Con base en las observaciones, el conjunto está compuesto por 71 perros y 29 coyotes (Figura 2). 
+
+```{r fig2, echo=FALSE, message=FALSE, warning=FALSE, fig.align = "center",out.width= "\\textwidth", fig.cap="El arqueólogo bayesiano y su equipo excavan el sitio Monico-1."}
+knitr::include_graphics("./output/figures/figure2.png")
+```
+
+Sin embargo, el arqueólogo también ha excavado un fragmento de hueso que es difícil de identificar. El arqueólogo quiere saber la especie más probable a la que pertenece este fragmento.
+
+El arqueólogo define «probabilidad» como la frecuencia relativa o proporción de veces que ocurre un evento. Sobre la base únicamente de los datos, la probabilidad (P) de que el perro permanezca en el conjunto es:
+
+$$P(Perro) = \dfrac{71}{100}= 0.71.$$
+
+
+mientras que la probabilidad de que quede un coyote es: 
+
+$$P(Coyote) = \dfrac{29}{100}= 0.29.$$
+
+
+Dadas estas probabilidades, es razonable que el arqueólogo crea que es más probable que el espécimen óseo no identificable sea de un perro. Sin embargo, el arqueólogo se muestra escéptico. Además, como estudioso de Monico, el arqueólogo tiene detalles etnográficos sobre el comportamiento de la gente de Monico, particularmente sobre sus tabúes alimenticios. Los relatos históricos revelan que los Monico alguna vez mantuvieron perros de caza en sus aldeas para cazar coyotes. Debido a que la base de subsistencia tradicional de Monico dependía de la caza del coyote, los perros desarrollaron relaciones especiales con sus dueños. En consecuencia, los Monico llegaron a tratar a sus perros con respeto, como lo harían con otras personas.
+
+Las historias verbales transmitidas de generación en generación han documentado que se pensaba que los perros eran hermanos cercanos de las personas. En particular, se sabe que la cultura Monico tenía tabúes contra matar o comer perros. Sin embargo, las historias verbales también han revelado que los Monico comían perros en tiempos de grave escasez de alimentos. Con esta información adicional o «previa», el arqueólogo decide observar los esqueletos más de cerca para comprobar la presencia de marcas de matanza (es decir, marcas de corte) en los restos del perro. El arqueólogo tabula esta información adicional sobre los huesos recuperados bajo dos condiciones de matanza: 1) las marcas de matanza están presentes y 2) las marcas de matanza están ausentes. La Tabla 1 muestra las frecuencias de marcas de matanza en los esqueletos de cada especie.
+
+```{r, echo=FALSE, message=FALSE}
+library(dplyr)
+library(kableExtra)
+cap<-"Frecuencias de animales individuales y marcas de matanza observadas en Monico1. Tenga en cuenta que, si bien la mayoría de las marcas de matanza están en huesos de coyote, 9 de los 71 huesos de perro también muestran signos de matanza."
+df<- data.frame ( a= c("Presente", "Ausente", "Total de individuos"),
+                  Coyote =c(23, 6,29),
+                  Perro = c(9, 62, 71),
+                  Total_de_marcas_de_matanza = c(32,68,100))
+
+df<- data.frame(df[-1], row.names=df[,1]) 
+
+kbl(df, caption = cap) %>% kable_material %>% 
+    add_header_above(c("", "Individuos de cada especie" = 2, "" )) %>%
+    column_spec(4, color ="white", background = "black") %>%
+    row_spec(3, bold=T, color="white", background ="black") %>% 
+    kableExtra::pack_rows("Marcas de matanza", 1,2)%>%
+  kable_styling(latex_options = "HOLD_position")
+```
+Para convertir estos datos en una tabla de probabilidad, el arqueólogo estandariza (o divide) todos los valores por el número total de observaciones (100 en este caso). Las celdas internas (fuente oscura, sombreado claro) en la Tabla 2 proporcionan las probabilidades de que las marcas de matanza y las especies ocurran juntas o en conjunto, lo que se conoce como probabilidades conjuntas. 
+
+```{r, echo=FALSE, message=FALSE}
+library(dplyr)
+library(kableExtra)
+cap<-"Proabilidades conjuntas de animales individuales y marcas de matanza observadas que describen la probabilidad de identificar una especie y observar marcas de matanza en los huesos de esa especieñ por ejemplo, P(Coyote and Butchery mark present) es 0.23, o 23\\%."
+df2<- data.frame ( a= c("P(Presente)", "P(Ausente)", "Especies marginales"),
+                  "P(Coyote)"= c(23/100, 6/100, 29/100),
+                  "P(Perro)" = c(9/100, 62/100, 71/100),
+                  Marcas_marginales_de_matanza = c(32/100,68/100,"Total = 1"))
+
+df2<- data.frame(df2[-1], row.names=df2[,1]) 
+
+kbl(df2, caption = cap) %>% kable_paper %>% 
+    add_header_above(c("", "Species Identified" = 2, "" )) %>%
+    column_spec(4, color ="white", background = "black") %>%
+    row_spec(3, bold=T, color="white", background ="black") %>% 
+    kableExtra::pack_rows("Marcas de matanza", 1,2)%>%
+  kable_styling(latex_options = "HOLD_position")
+```
+
+Los valores en los márgenes derecho e inferior de la Tabla 2 se denominan adecuadamente probabilidades marginales. Estos representan la presencia y ausencia de marcas de matanza (a la derecha) y la especie identificada (abajo). Los totales marginales son las probabilidades totales de cada espacio subdividido (especie o marca de matanza). Por definición, todas las probabilidades se encuentran en el rango de 0 a 1, y la suma total de las filas o columnas marginales (es decir, la suma de todos los resultados marginales) debe ser 1. 
+En este punto, el arqueólogo se enfoca en el espécimen de hueso no identificable y encuentra varias marcas de matanza en él. El arqueólogo puede utilizar esta información adicional para obtener una ventaja inferencial al tener en cuenta o condicionar la presencia de marcas de matanza, un proceso llamado condicionamiento. El arqueólogo condiciona la especie identificada a la presencia o ausencia de marcas de matanza. Este procedimiento también se conoce como subconjunto o estratificación de la variable «especies identificadas» por la presencia o ausencia de marcas de matanza.
+Naturalmente, el arqueólogo pregunta: «¿Cuál es la probabilidad de que el espécimen óseo no identificable sea de un perro en comparación con la probabilidad de que sea de un coyote, dado que hay marcas de matanza en los huesos del individuo?». El arqueólogo observó 32 animales de Monico-1 con marcas de matanza presentes. De esos, las marcas de matanza estaban presentes en 9 perros y 23 coyotes. El arqueólogo puede así calcular las probabilidades de que el individuo pertenezca a una especie u otra, dado que hay marcas de matanza (los estadísticos usan el símbolo «|» para referirse a «dado que» y para indicar que se está produciendo un condicionamiento). Para un perro, la probabilidad es:
+
+
+$$P(\text{Perro | Marca de matanza presente}) = \dfrac{9}{32}= 0.28.$$
+
+mientras que la probabilidad de que un individuo con marcas de matanza pertenezca a la especie coyote es:
+
+$$P(\text{Coyote | Marca de matanza presente}) = \dfrac{23}{32}= 0.72.$$
+
+Por lo tanto, después de observar las marcas de matanza en el hueso individual (no identificado), el arqueólogo puede afirmar que la probabilidad de que provenga de un coyote es de 0.72. En otras palabras, tienen un 72 % de certeza de que el hueso provino de un coyote.
+Unos días después, un reportero de un periódico local se enteró de una excavación arqueológica en curso en otro sitio cercano de la aldea de Monico, llamado Monico-2. Fuentes revelan al reportero que las excavadoras allí también están recuperando restos de fauna. Debido a que el arqueólogo es un conocido experto en los hábitos alimenticios de Monico, el reportero se pone en contacto con el arqueólogo y le comunica el hecho de que el nuevo conjunto de fauna en Monico-2 está compuesto en su totalidad por restos de especies de perros. 
+Aunque los investigadores de Monico-2 todavía no han realizado un análisis completo de la fauna, el reportero le pregunta al arqueólogo qué tan probable es que los Monico estuvieran matando y comiendo perros en el nuevo sitio. Por ahora, el arqueólogo ha estimado las probabilidades de encontrar marcas de matanzas asociadas con cada especie animal en base a la experiencia en el pueblo de Monico-1. Para hacer una inferencia probabilística sobre el comportamiento en el nuevo sitio, el arqueólogo condiciona las «especies identificadas» en lugar de la «presencia de marcas de matanza». De los 71 perros identificados en Monico-1, el arqueólogo observó 9 con marcas de matanza y 62 sin ellas. Esto significa que, según la evidencia de Monico-1, la probabilidad de encontrar evidencia de matanza de perros es:
+
+$$P(\text{ Marca de matanza presente | Perro}) = \dfrac{9}{71}= 0.13.$$
+
+mientras que la probabilidad de que no haya evidencia de matanza en perros es: 
+
+$$P(\text{ Marca de matanza ausente | Perro}) = \dfrac{62}{71}= 0.87.$$
+
+Después de pensar un momento, el arqueólogo le dice al reportero que (basado en el conocimiento de Monico-1) la probabilidad de que los huesos de perro de Monico-2 hayan resultado de actividades dietéticas es relativamente baja, alrededor del 13 %. Este cálculo se basa en el teorema de Bayes, así como en la información sobre la relación de Monico con sus perros y las prácticas de matanza en Monico-1.

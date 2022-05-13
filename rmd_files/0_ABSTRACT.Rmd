@@ -1,0 +1,10 @@
+---
+output:
+  html_document: default
+  pdf_document: default
+---
+Los arqueólogos utilizan frecuentemente distribuciones de probabilidad y pruebas de significación de hipótesis nula (NHST por sus siglas en inglés) para evaluar qué tan bien se alinean los datos de estudios, excavaciones o experimentos con sus hipótesis sobre el pasado. La inferencia bayesiana es utilizada cada vez más como alternativa a NHST y, en arqueología, se aplica más comúnmente a la estimación de fechas de radiocarbono y la construcción de cronologías. Este artículo demuestra que las estadísticas bayesianas tienen aplicaciones más amplias. Comienza contrastando los marcos estadísticos NHST y bayesiano, antes de introducir y aplicar el Teorema de Bayes. Con la finalidad de guiar al lector a través de un análisis bayesiano elemental paso a paso, este estudio utiliza un conjunto ficticio de fauna arqueológica de un solo sitio. Posteriormente, el ejemplo ficticio se amplía para demostrar cómo pueden aplicarse los análisis bayesianos a datos con una variedad de propiedades, incorporando formalmente el conocimiento previo de los expertos en el proceso de evaluación de hipótesis.
+ 
+ 
+**Keywords**: *Estadística bayesiana, modelos de probabilidad frecuencial, contraste de hipótesis, arqueostadística*.
+\newpage
