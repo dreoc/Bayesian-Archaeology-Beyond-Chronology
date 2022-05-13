@@ -1,0 +1,507 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r, include=FALSE}
+options(tinytex.verbose = TRUE)
+```
+
+The Monico case study provides a tangible example of the different components of a Bayesian analysis, including estimating an event’s probability and the probability of one event given another (using currently available data), along with the key concepts of likelihood, prior and posterior probabilities, and how to update one’s knowledge using the previous Bayesian posterior as the new prior. Although the procedure exemplified here is specific to archaeological count data, Bayes’ theorem is very general and can be useful for a wide variety of data and data-generating processes. This section generalizes Bayes’ theorem to a variety of other scientific scenarios. 
+
+We stated earlier that Bayesian statistics uses the data in hand $(D)$ to assign probabilities to statements or hypotheses $(H)$ about a population. The statement $P(H|D)$, i.e., the probability of the hypothesis given the data, formalizes this relationship. In our example of the Monico sites, the archaeologist was trying to calculate the probability that the Monico people butchered dogs and coyotes (the hypothesis) given the number of cut marks on their bones (the data in hand). To operationalize this statement in the context of data and hypotheses, Bayes’ theorem functions as follows:
+
+
+$$P(H|D) = \dfrac{P\left(D|H\right)\times P(H)}{P(D)}$$
+where $P(H|D)$ is the **posterior probability** of the hypothesis given the data; $P(D|H)$ is the probability of the data given the hypothesis (or the **likelihood**) of the observed data; $P(H)$ is the **prior probability** of the hypothesis (before the data were collected); and $P(D)$ is the probability of the data in hand (out of all possible values of the data). Alternatively, generalizing and using more modern statistical vernacular, this operation can be expressed as:
+
+$$\text{Posterior} = \dfrac{\text{Likelihood}\times\text{Prior}}{P(\text{data})}$$
+
+In this manner, Bayesian statistics offers an alternative statistical framework for updating and evaluating hypotheses through a mechanism that obtains *a posteriori* information about the posterior of interest based upon the data, a statistical model (expressed as a likelihood), and appropriately formulated prior information. In other words, with an explicit statement of our prior information, a clearly defined statistical model, and a desire to update our understanding, Bayes’ theorem provides us with a probabilistic framework for making interpretations.
+
+In addition to the coherent and explicit nature of the framework, there is another attractive feature of the Bayesian paradigm, namely that it allows us to learn from experience. Priors enable the explicit contextualization of previous knowledge or beliefs about the topic under investigation [@buck_bayesian_1996;@cowgill_distinguished_1993]. Using previous knowledge should be a natural tendency for archaeologists. As Buck, et al. [-@buck_bayesian_1996] discusses, archaeologists apply previous knowledge often, for example, when inferring the function of newly discovered artifacts by using their association to artifacts and features that have already been discovered. Similarly, the archaeologist in our example was able to contextualize the data from the Monico-2 site based on Monico-1 observations. Few other interpretive frameworks offer a clear structure for updating beliefs in the light of new information, and yet this is such an important part of most intuitive approaches to learning about the world in which we live. Moreover, today’s posterior information (based on current data and prior information) is in a suitable form to become the prior for further work if and when more data become available. 
+
+### From inferences about discrete points to data distributions
+
+Thus far, the example has shown how Bayesian inference can be applied to hypotheses defined by statements about discrete events. In the fictitious example above, the hypotheses were represented by statements about whether the observed faunal remains were the result of butchery. The observed data assigned probabilities to each hypothesis, thus indicating the amount or degree of belief in the hypothesis. These data were discrete events from only two sites. Yet, in reality, although the population of the proportion of butchered dog bones are the outcomes of the same behavioral process (butchery), these values are likely to vary from site to site.
+
+Consequently, many archaeologists might wish to compare their single-site data to the universe of known sites. In this case, the hypotheses to be evaluated are characterized by the values of the **parameters** of a probability model. Although we mentioned this earlier, at this point it is worth recalling that such parameters describe certain characteristics of a sample or population. For archaeologists, the most common parameters are those that measure central tendency, such as the mean or median. Bayesian inference can be conducted using other parameters, as well as the full distribution of the posterior, data and prior information. These are usually represented by probability models. Likely the most well-known such model is the normal probability model, in which the probability distribution has a symmetrical, bell-shape around a single mean value. When (sample) data and associated models of probability are involved, it is conventional to use the Roman symbol $x$ to represent the observed (or sample) data and the Greek symbol $\theta$ *(theta)* to represent the parameter (or multiple set of parameters) of the model of the population that we are trying to learn about. Given $x$ and a model with parameter(s) $\theta$, we can re-couch Bayes’ theorem and its three components—the *likelihood*, the *prior*, and the *posterior*—in the context of data distributions and their probability models.
+
+The *likelihood* is a statistical function, or a mathematical expression, that associates individual data quantities with their respective probability values. Its form is determined by the specific probability model being used, but, in general terms, it is represented by $P(x|\theta)$, i.e., the probability distribution of the newly observed data conditioned on the parameter(s). Consequently, the likelihood is the probability of observing particular data values given some specific (or hypothesized) values of the unknown parameters. Therefore, this is a formal statement of the relationship between the parameters about which we want to learn and the data we collect.
+
+The *prior* is also a function and can be represented by $P(\theta)$. It is a statement of what we know about the probability distribution of the parameter(s) before new data are collected. In simple terms, we can think of this as the probability we attach to observing specified values of the unknown parameters before we observed the data. This is a formal statement of our knowledge prior to collecting the latest data.
+
+The *posterior* is what we want to obtain: a combination of the information contained in the new data, the likelihood and the prior. The posterior is represented by $P(\theta|x)$. As presented in the previous section, this is the probability of the hypothesis given the data, or $P(H|D)$. It is the probability distribution of the model’s parameter(s) conditioned on the data. In simple terms, we can think of this as the probability we attach to specified or hypothetical values of the unknown parameters after observing the data. In this context, we can express Bayes’ theorem as:
+
+$$P(\theta|x) = \dfrac{P\left(x|\theta\right)\times P(\theta)}{P(x)}$$
+
+### The Bayesian archaeologist and the uncertainty of hypotheses
+
+As described above, the Bayesian inference about Monico-2 given to the reporter was based only on the Monico-2 data and the archaeologist’s prior expert experience with Monico-1. However, if the archaeologist wants to give the reporter the best possible estimate, they could use all available evidence, including the Monico-2 data, their expert knowledge and information from other archaeological sites. To do this, the archaeologist reviews the published literature and identifies additional information on the proportion of dogs with butchery marks recovered from 38 previously excavated Monico sites. The archaeologist then seeks to investigate the variability of dog butchery behavior as evidenced by the proportion of dogs with butchery marks at each Monico site, with a view to obtaining a probabilistic prior statement about the theta parameter, $\theta$ (the proportion of dogs with butchery marks).
+
+Table 5 illustrates the distribution of $\theta$ values across the frequency and proportions of sites. The table shows that out of the 38 sites, 20 have reported having between 0% and 5% of dogs showing evidence of butchery marks. Twelve sites have between 6% and 15% of dogs showing evidence of butchery marks, while another four sites report values for $\theta$ between 16% and 35%. Meanwhile, another two archaeological sites report that $\theta$ ranges from 36% to 75%. There are no sites with more than 75% of dog remains showing evidence of butchery.
+
+```{r echo = FALSE, eval=TRUE}
+p = c(seq(0.05, 0.95, by = 0.1), 1); 
+# number of sites with these proportions from the literature
+prior_n <- c(20, 12, 3, 1, 1, 0, 0, 1, 0, 0, 0)
+# prior probabilities of each p proportion
+prior_d = prior_n / sum(prior_n);
+p_labels <- sapply(2:(length(c(0, p))), function(x) paste(c(0, p)[x - 1], c(0, p)[x], sep = "-"))
+kb <- kable(dplyr::tibble(p_label = p_labels, n = prior_n, d = prior_d), digits = 2,
+          col.names = c("The proportion of dog remains with butchery marks ($\\theta$)",
+                        "Number of sites with ($\\theta$) evidence of butchery on dog bones",
+                        "Proportion of total number of sites with ($\\theta$) evidence of butchery on dog bones (prior probability)"),
+          caption = "Estimates of the proportion of dog remains with butchery marks ($\\theta$) and the distribution of the proportion of the total number of sites with evidence of butchery marks on dog bones (prior probabilities)", escape = FALSE)
+kableExtra::kable_styling(kb, bootstrap_options = "hover", full_width = F)
+```
+
+To begin, the archaeologist speaks with other experts about nutrition, the archaeology of food, and Monico archaeology and ethnography. Based on their scientific knowledge, they hypothesize that, to consider dogs as having made a substantial food contribution at a Monico site, there would need to be evidence of butchery marks on at least 50% of individual dogs. “So,” the archaeologist thinks, “my first hypothesis, *H~1~*, is that the value of $\theta$ should be at least 50%, or 0.5, for any specific Monico site. What is the probability of this hypothesis being correct for Monico-2 based on the data I have and my prior knowledge?”
+
+The Monico-2 site sample indicated that, out of 10 individual dog bones, 9 had butchery marks on them (so, $\theta$ = 0.9). The archaeologist wants to use prior knowledge including the information from the literature review to understand the variability of $\theta$ at Monico village sites.
+
+The archaeologist first records the dog butchery proportions ($\theta$), from the 38 sites found in the literature. To summarize these data, in Table 5 (column 1), they group the $\theta$ values into equal intervals in increments of 0.10 (10%, except the first interval, which is smaller). They also record the number of sites reporting $\theta$ values in each interval (column 2). The archaeologist then calculates the prior probabilities for each $\theta$-interval by dividing the number in each cell of column 2 of Table 5 by the total number of sites i.e., 38. In this way, the third column of Table 5 reports the proportion of sites within each $\theta$-interval. This frequency distribution also serves as the prior distribution of $\theta$ values.
+
+```{r, include=FALSE, message=FALSE, warning=FALSE}
+# packages ----------------------------------------------------------------
+
+library(dplyr)
+library(ggplot2)
+library(tidyr)
+library(ggrepel)
+library(ggtext)
+```
+```{r, echo=FALSE}
+# new ggplot theme ---------------------------------------------------------
+ggplot2::theme_set(
+  ggplot2::theme_classic()+
+    ggplot2::theme(
+      plot.margin = unit(c(.2,.2,.2,.2), "in"),
+      plot.background = element_rect(fill = "#f5f5f5"),
+      panel.background = element_rect(fill = NA),
+      panel.grid.major.x = element_blank(),
+      panel.grid.minor.x = element_blank(),
+      panel.grid.major.y = element_line(color = "#d2d2d2"),
+      panel.grid.minor.y = element_line(color = "#d2d2d250"),
+      axis.title = element_text(face = "bold", size = 12),
+      axis.text = element_text(size = 10),
+      axis.line = element_line()
+    ))
+```
+
+
+```{r prior-plot, eval=TRUE, include=FALSE}
+data <- data.frame(p, p_labels, prior_d,prior_n) %>%
+  add_row(p = 0.05, prior_d = seq(0,0.53, 0.001)) %>% 
+  add_row(p = 0.15, prior_d = seq(0,0.32, 0.001)) %>% 
+  add_row(p = 0.25, prior_d = seq(0,0.08, 0.001)) %>% 
+  add_row(p = 0.35, prior_d = seq(0,0.03, 0.001)) %>% 
+  add_row(p = 0.45, prior_d = seq(0,0.03, 0.001)) %>% 
+  add_row(p = 0.75, prior_d = seq(0,0.03, 0.001)) %>% 
+  mutate(p = as.numeric(as.character(p))) %>% 
+  mutate(label_place = case_when(p == 0.05 ~ 0.025,
+                                 p == 0.15 ~ 0.1,
+                                 p == 0.25 ~ 0.2,
+                                 p == 0.35 ~ 0.3,
+                                 p == 0.45 ~ 0.4,
+                                 p == 0.75 ~ 0.7
+                                 )) %>% 
+  mutate(new_p = p-0.01) %>% 
+  mutate(bar_prior_d = 0.001) %>% 
+  filter(is.na(prior_n) | (new_p < 0 | new_p > 1))
+
+
+data3 <- data.frame(p, p_labels, prior_d,prior_n) %>%
+  mutate(p = as.numeric(p)) %>% 
+  mutate(x_inf = lag(p),
+         x_sup = p) 
+
+d<-data %>% 
+  ggplot(aes(x = new_p, y = bar_prior_d, fill = prior_d, color = prior_d))+
+  geom_bar(stat = "identity")+
+  geom_text(data = data %>% 
+              group_by(p) %>% 
+              filter(prior_d == max(prior_d)),
+            aes(x = new_p,
+                y = prior_d,
+                label = ifelse(prior_d != 0,round(prior_d, 4), NA)),
+            color = "black",
+            vjust = -0.4,
+            hjust = 0.5)+
+  #geom_point(x = 1, y = 0.6, color = NA)+
+  scale_y_continuous(expand = expansion(mult = c(0, .01)), 
+                     limits = c(0.001,0.6),
+                     breaks = seq(0,1,0.1))+
+  scale_x_binned(breaks = c(0,0.05,0.15,0.25,0.35,0.45,0.55,0.65,0.75,0.85,0.95,1),
+                 labels = c(0,0.05,0.15,0.25,0.35,0.45,0.55,0.65,0.75,0.85,0.95,1),
+                 expand = c(0,0),
+                 limits = c(0,1)
+  )+
+  scale_fill_gradient(low="#ffd82b", high="#F3010A")+ #red
+  scale_color_gradient(low="#ffd82b", high="#F3010A")+ #red
+  
+  labs(
+    x = paste("Proportion of Dogs with Butchery Marks at Monico Archaeological Sites (*\u03B8*)"),
+    y = paste("Prior Probability, P(*\u03B8*)")
+  )+
+  theme(
+    axis.ticks.x = element_line(),
+    legend.position = "none",
+    #plot.background = element_rect(fill = "#242424", color = NA),
+    #text = element_text(color = "white"),
+    #axis.text = element_text(color = "white"),
+    #axis.line = element_line(color = "white"),
+    #axis.ticks = element_line(color = "white"),
+  )+
+  coord_cartesian(xlim = c(-0.005,1)) + theme(axis.title.x = element_markdown(), axis.title.y = element_markdown())
+
+ggsave(filename = "../output/figures/figure3.png", plot = d, width = 8, height = 5, units = 'in', dpi = 400)
+```
+
+The archaeologist then plots the distribution of the proportion of dogs butchered at Monico sites (Table 5) in order to visualize the resulting prior knowledge that can be derived from this dataset (Figure 3).
+
+```{r fig3, echo=FALSE, message=FALSE, warning=FALSE, fig.align = "center",out.width= "\\textwidth", fig.cap="Simple representation of the distribution of the archaeologist’s prior probabilities of the estimates of $\\theta$ (theta), the proportion of dogs with butchery marks at Monico archaeological sites (from Table 5). Note that small values of $\theta$ have a higher prior probability than larger ones.", fig.pos="H"}
+knitr::include_graphics("./output/figures/figure3.png")
+```
+
+Recall that in the Bayesian framework, one needs the likelihood ($P(x|\theta)$), the probability of the data ($P(x)$), and the prior probability of the hypothesis ($P(\theta)$) to compute the posterior probability of the hypothesis that $\theta$ > 0.50, given the data ($P(\theta > 0.5|x)$). Figure 3 illustrates the prior probability, $P(\theta)$, for different $\theta$ values.
+
+Note that in contrast to the single-event values in the previous examples above, the components of Bayes’ theorem in this case are distributions of values. Applying Bayesian statistics in such situations provides a particular advantage because the framework enables archaeologists to evaluate the probability of a hypothesis and the associated uncertainty. Thus, to
+continue with the Bayesian analysis of the Monico-2 data in light of the prior knowledge from the 38 sites (represented in Figure 3), the archaeologist needs a model to represent the probability of the data, $x$, and associated parameter(s), $\theta$, in order to compute the likelihood, $P(x|\theta)$, and the probability of the data, $P(x)$.
+
+### The likelihood
+
+To compute the probability of the Monico-2 data given the hypothesis, the archaeologist needs a function that can represent the likelihood, $P(x|\theta)$, of these data, $x$, given the parameter of interest, $\theta$. Archaeologists frequently employ a probability function termed the “binomial” model to calculate the likelihood of data composed of binary observations, i.e., observations expressed as 1/0, yes/no, true/false, or present/absent. In this case, the binomial model is appropriate for observations indicating the presence or absence of butchery marks on individual dog skeletons, as in the Monico-2 data. As such, the archaeologist wants to compute the likelihood that 9 out of 10 dog skeletons from this site exhibited butchery marks on them.
+
+Mathematically, the binomial model is expressed by:
+
+
+$$P(x|\theta) = {N\choose k}\times\theta^k \times (1 - \theta)^{N-k}$$
+
+The symbols $k$ and $N$ represent the data: $k$ is the number of dogs observed with butchery marks,
+while $N$ is the total dogs observed. The model’s parameter, $\theta$, in this example represents
+the proportion of dogs with butchery marks out of all dogs observed at Monico-2. 
+
+The archaeologist uses the parameter estimate method called *maximum likelihood* (ML) to determine the most likely value of $\theta$ that would have generated the data. ML asks, under the binomial model, which value of $\theta$ is most likely to lead to the data observed? In this case, the archaeologist’s binomial data are $k = 9$ dogs with butchery marks and $N = 10$ total dogs. ML evaluates which value of the $\theta$ parameter maximizes $P(x | \theta)$, the likelihood, over a systematic range of quantities between 0 and 1.
+
+To estimate the most likely value of $\theta$, the archaeologist assumes that the probability of
+observing each butchered dog is independent of the others, making the probability of observing
+9 butchered dogs $\theta^{9}$. Conversely, the probability of observing a single unbutchered dog is $(1 -\theta)^{(10-9)}$, and the probability of both 9 butchered dogs and 1 butchered dog occurring is $\theta^9 \times (1-\theta)^{(10-9)}$. However, to compute the likelihood of the data, the archaeologist also needs to account for the number of different ways that the 9 observations of dogs with butchery marks, $k$, can occur in the sequence of 10 dog observations, $N$.
+
+The binomial model does this by computing ${N\choose k}$ , known as the *binomial coefficient* (read
+“*N choose k*”). In this case, if positive identifications of butchery marks on dogs are represented by 1s and no butchery marks are 0s, the binomial coefficient computes how many unordered sets could have resulted in nine 1s and one 0: for example $x = \{0, 1, 1, 1, 1, 1, 1 ,1, 1, 1\}$, $\{1, 1, 1, 1, 0, 1, 1, 1, 1, 1\}$, $\{1, 1, 1, 1, 0, 1, 1, 1, 1, 1\}$, or $\{1, 1, 1, 1, 1, 1, 1 ,1, 1, 0\}$^[Not all sets are enumerated here, but this example should enable the reader to imagine how this can occur in a total of 10 unique ways. Although in this case the solution is quite simple, in other applications, the solution might not be as obvious, e.g., the number of ways five successes can occur in 10 tries, i.e., ${10 \choose 5} = 252.$], ... etc. The binomial coefficient is shorthand, and may be
+calculated using the following equation:
+
+$${N\choose k} = \dfrac{N!}{k!\times (N - k)!}$$
+
+where $!$ is the factorial function that yields the product of an integer and all the integers below it.
+In our case, $N=10$ and $k=9$, and so: 
+
+$$N! = 10 \times 9 \times 8\times 7 \times 6\times 5 \times 4\times 3 \times 2\times 1 = 3628800$$
+$$k! = 9 \times 8 \times 7 \times 6 \times 5 \times 4 \times 3 \times 2 \times 1 = 362880$$
+
+and  $(N - k)! = (10 - 9)! = 1! = 1$.
+
+Therefore,
+
+$$ {N\choose k} = \dfrac{N!} {k! \times (N - k)!} = \dfrac {10!} {9! \times (10 - 9)!} = \dfrac {3,628,800} {362,880 \times 1} = 10.$$
+
+Once ${N\choose k}$ has been computed, the archaeologist may continue to estimate the likelihood value of a given quantity of $\theta$ by calculating:
+
+$$P(N, k | \theta) = 10 \times \theta^9 \times (1 - \theta)^{(10 - 9)}$$
+
+across the range of $\theta$ values from 0 to 1 to find the likelihood distribution of the data and, thus, the value of $\theta$ that maximizes the likelihood function. This approach is illustrated in Figure 4, from which the archaeologist learns that the ML estimate of $\theta$ (given the Monico-2 data) is 0.9; in other words, the observations at Monico-2 are most likely if the proportion of dogs butchered across Monico-2 ($\theta$) is 0.9 (or 90%).
+
+```{r eval=TRUE, include=FALSE}
+
+
+data <- c(9, 10); 
+
+# likelihood plot
+theta_values <- seq(.001, 1, length.out = 1000)#p
+likelihood_k <- data[1]
+likelihood_N <- data[2]
+likelihoods <- dbinom(likelihood_k, likelihood_N, prob = theta_values)
+
+
+data_plot4 <- data.frame(theta_values, likelihood_k, likelihood_N, likelihoods)
+
+data_plot4 %>% 
+  ggplot(aes(x = theta_values, y = likelihoods))+
+  geom_ribbon(aes(ymin = 0, ymax = likelihoods), fill = "#27999A", alpha = 0.6)+
+  geom_segment(aes(x = 0.9, xend = 0.9, y = 0, yend = 0.387420489), linetype = "dashed",
+               size = 1)+
+  geom_line(size = 1.5, color = "#27999A")+
+  scale_x_continuous(breaks = seq(0,1,0.1),
+                     expand = c(0,0.01))+
+  scale_y_continuous(expand = expansion(mult = c(0, .01)),
+                     limits = c(0,0.4),
+                     breaks = seq(0,0.4,0.1))+
+  labs(
+    title = paste("Likelihood Distribution of *\u03B8*"),
+    x = paste("Proportion of Dogs with Butchery Marks at Monico Archaeological Sites (*\u03B8*)"),
+    y = paste("Likelihood,  P(x|*\u03B8*)")
+  )+
+  theme(
+    plot.title = element_text(hjust = 0.5, size = 20)
+  )+
+  coord_cartesian(xlim = c(0,1)) + theme(plot.title = element_markdown(), axis.title.x = element_markdown(), axis.title.y = element_markdown())
+
+ggsave(filename = "../output/figures/figure4.png",  width = 8, height = 5, units = 'in', dpi = 400)
+```
+
+```{r fig4, echo=FALSE, message=FALSE, warning=FALSE, fig.align = "center",out.width= "\\textwidth", fig.cap="Distribution of standardized likelihood values corresponding to variable quantities of $\\theta$ (theta) across the 0, 1 range. Dashed red line indicates the value of $\\theta$ that maximizes the likelihood of the data. This is known as the Maximum Likelihood estimate of $\\theta$" , fig.pos="H"}
+
+knitr::include_graphics("./output/figures/figure4.png")
+```
+^[It should be noted here that while the likelihood renders values in the 0-1 scale, it is not necessarily a probability function that adds up (integrates) to 1. To plot the likelihood on the same scale as the prior and the posterior distributions, all distributions have been normalized (rescaled) to sum to 1]
+
+### The prior
+
+Much like using the binomial probability model to obtain the likelihood distribution of the
+Monico-2 data, the archaeologist can also use another probability model to express $P(\theta)$, the probability distribution of $\theta$, also known as the prior. In this case, the archaeologist needs a probability function that models the distribution of $\theta$, the proportion of dogs with butchery marks across the 38 sites observed before the excavation of Monico-2. Statisticians frequently use the Beta probability function to model the distribution of
+proportions like $\theta$. The mathematical expression of the Beta model is:
+
+$$ P(H) = P(\theta) = \theta^{a - 1}\times (1 - \theta)^{b-1}$$
+
+The shape of the Beta model is thus controlled by two parameters, $a$ and $b$, which in turn control key summary statistics such as the model’s mean and variance. Unlike with the likelihood model, the archaeologist in this case wants to find a distribution of $\theta$ that quantitatively describes their prior knowledge. To do this, the Beta parameters can be adjusted to fit the shape of the prior data distribution in Figure 3. Through a visual best fit, the archaeologist estimates that the values $a = 1.5$ and $b = 16$ result in a probability distribution that resembles that of the prior knowledge about $\theta$ (i.e., the shape shown in Figure 3). Thus, the distribution of the probability, 
+
+$$ P(H) = P(\theta) = \theta^{(1.5 - 1)}\times (1 - \theta)^{(16 - 1)}$$
+
+across all $\theta$ values between 0 and 1 is illustrated in Figure 5.
+
+```{r eval=TRUE, include=FALSE}
+prior.par <- c(1.5, 16)
+x <- seq(.0001, .99999, length.out = 100)
+
+data_plot5 <- data.frame(prior.par, x) %>% 
+  mutate(d_beta = dbeta(x, prior.par[1], prior.par[2]) * (0.6 / max(dbeta(x, prior.par[1], prior.par[2])))) %>% 
+  add_row(x = 0, d_beta = 0)
+
+data3[is.na(data3)] <- 0
+
+data_plot5 %>% 
+  ggplot()+
+  geom_ribbon(aes(x = x, y = d_beta, ymin = 0, ymax = d_beta), fill = "#e04a3a", alpha = 0.6)+
+  geom_line(aes(x = x, y = d_beta),
+            size = 1.5,
+            color = "#e04a3a")+
+  geom_rect(data = data3, aes(xmin = x_inf, xmax = x_sup,ymin = 0, ymax = prior_d),
+            #fill = "#A0F900",
+            #color = "#5C8F00",
+            fill = "#fad22a",
+            color = "#FFCD28",
+            alpha = 0.5)+
+  geom_point(x = -0.1, y = 0.6, color = NA, stat = "unique")+
+  scale_y_continuous(expand = expansion(mult = c(0, .01)), 
+                     #limits = c(0.001,0.6),
+                     breaks = seq(0,1,0.1))+
+  scale_x_continuous(breaks = c(0,0.05,0.15,0.25,0.35,0.45,0.55,0.65,0.75,0.85,0.95,1),
+                     labels = c(0,0.05,0.15,0.25,0.35,0.45,0.55,0.65,0.75,0.85,0.95,1),
+                 expand = c(0,0),
+                 limits = c(-0.1,1)
+  )+
+  labs(
+    x = paste("Proportion of Dogs with Butchery Marks at Monico Archaeological Sites (*\u03B8*)"),
+    y = paste("Prior, P(*\u03B8*)")
+  )+
+  theme(
+    axis.ticks = element_line()
+  )+
+  coord_cartesian(xlim = c(-0.005,1)) + theme(axis.title.x = element_markdown(), axis.title.y = element_markdown())
+
+ggsave(filename = "../output/figures/figure5.png",  width = 8, height = 5, units = 'in', dpi = 400)
+```
+
+```{r fig5, echo=FALSE, message=FALSE, warning=FALSE, fig.align = "center",out.width= "\\textwidth", fig.cap="Standardized Beta probability model, with parameters $a$ = 1.5, and $b$ = 16, representing the archaeologist’s prior probabilities depicted in Figure 1. Note the similarity in shpae, and in particular the location of the mode and range of values, to Figure 1.", fig.pos="H"}
+knitr::include_graphics("./output/figures/figure5.png")
+```
+
+### The posterior
+
+The archaeologist is aware that statisticians frequently use the binomial and beta distributions in the context of Bayesian analyses because they work well together for modelling the likelihood and prior probability distributions, respectively, simplifying the calculations needed to compute the posterior. Such convenient pairs of probability models are known as *conjugates*. As a result of the modelling choices made, the archaeologist may algebraically combine the binomial likelihood data with the parameters of the beta prior distribution to produce a posterior beta distribution represented by:
+
+$$P(H|D) = P(\theta|x) = \theta ^ {(k_{likelihood} + a_{prior} - 1)} \times (1 - \theta) ^ {(N_{likelihood} - k_{likelihood} + b_{prior} - 1)}$$
+
+$$P(\theta|x) = \theta ^ {(9 + 1.5 - 1)} \times (1 - \theta) ^ {(10 - 0 + 16 - 1)}$$
+
+They thus generate values of $P(x|\theta)$, the likelihood, and  $P(\theta)$, the prior probabilities, to calculate $P(\theta|x)$, the posterior probability distribution across a fine grid of $\theta$ values in the 0, 1 interval (1,000 values between 0, and 1). These are illustrated in Figure 6. 
+
+```{r include=FALSE, eval=TRUE}
+# using a finer grid of 1,000 theta values
+# from 0, to 1.
+theta_values = seq(0, 1, length = 1000)
+prior_a = prior.par[1]
+prior_b = prior.par[2]
+likelihood_k = data[1] #number of dogs observed with butchery marks
+likelihood_N = data[2] #total number of dogs observed
+
+prior_probabilities = dbeta(theta_values, prior_a, prior_b) / 21
+likelihoods = dbeta(theta_values, likelihood_k + 1, likelihood_N - likelihood_k + 1) / 21
+posterior_probabilities = dbeta(theta_values, likelihood_k + prior_a, likelihood_N - likelihood_k + prior_b) / 21
+
+data_plot6 <- data.frame(theta_values, posterior_probabilities, likelihoods, prior_probabilities)
+text_position <- data_plot6 %>%
+  pivot_longer(
+    cols = c(2:4)
+  ) %>% 
+  mutate(theta_values = round(theta_values,3))
+
+data_plot6 %>% 
+  ggplot(aes(x = theta_values))+
+  #left
+  geom_ribbon(aes(ymin = 0, ymax = prior_probabilities), fill = "#e04a3a", alpha = 0.6)+
+  geom_line(aes(y = prior_probabilities, color = "Prior"), size = 1.5)+
+  geom_text_repel(data = text_position,
+                  aes(x = theta_values, y = value,
+                      fontface = "bold",
+                      segment.size = 0.8,
+                      label = ifelse(theta_values == 0.101 & name == "prior_probabilities", "Prior", "")),
+                  force = 30,
+                  nudge_y = 0.06,
+                  min.segment.length = 0,
+                  max.overlaps = Inf,
+                  segment.curvature = -0.1,
+                  segment.ncp = 3,
+                  segment.angle = 20,
+                  color = "#e04a3a")+
+  #center
+  geom_ribbon(aes(ymin = 0, ymax = posterior_probabilities), fill = "#6a279a", alpha = 0.6)+
+  geom_line(aes(y = posterior_probabilities, color = "Posterior"), size = 1.5)+
+  geom_text_repel(data = text_position,
+                  aes(x = theta_values, y = value,
+                      fontface = "bold",
+                      segment.size = 0.8,
+                      label = ifelse(theta_values == 0.401 & name == "posterior_probabilities", "Posterior", "")),
+                  force = 30,
+                  nudge_y = 0.05,
+                  nudge_x = 0.05,
+                  min.segment.length = 0,
+                  max.overlaps = Inf,
+                  segment.curvature = -0.1,
+                  segment.ncp = 3,
+                  segment.angle = 20,
+                  color = "#6a279a")+
+  #right
+  geom_ribbon(aes(ymin = 0, ymax = likelihoods), fill = "#27999A", alpha = 0.6, size = 1)+
+  geom_line(aes(y = likelihoods, color = "Likelihood"), size = 1.5)+
+  geom_text_repel(data = text_position,
+                  aes(x = theta_values, y = value,
+                      fontface = "bold",
+                      segment.size = 0.8,
+                      label = ifelse(theta_values == 0.850 & name == "likelihoods", "Likelihood", "")),
+                  force = 30,
+                  nudge_y = 0.08,
+                  nudge_x = -.1,
+                  min.segment.length = 0,
+                  max.overlaps = Inf,
+                  segment.curvature = 0.1,
+                  segment.ncp = 3,
+                  segment.angle = 20,
+                  color = "#27999A")+
+  scale_color_manual(values = c("Prior" = "#e04a3a",
+                                "Posterior" = "#6a279a",
+                                "Likelihood" = "#27999A"))+
+  scale_y_continuous(expand = expansion(mult = c(0, .01)),
+                     breaks = seq(0,1,0.1),
+                     limits = c(0,0.4))+
+  scale_x_continuous(breaks = seq(0,1,0.1),
+                     expand = c(0,0.01))+
+  labs(
+    x = paste("Proportion of Dogs with Butchery Marks at Monico Archaeological Sites (*\u03B8*)"),
+    y = paste("Probability Density")
+  )+
+  theme(
+    legend.position = "none"
+  ) + theme(axis.title.x = element_markdown(), axis.title.y = element_markdown())
+
+ggsave(filename = "../output/figures/figure6.png",  width = 8, height = 5, units = 'in', dpi = 400)
+```
+
+```{r fig6, echo=FALSE, message=FALSE, warning=FALSE,fig.align = "center", out.width= "\\textwidth", fig.cap="Distributions of the archaeologist’s prior probabilities, the likelihood of the data, and the posterior probabilities across a fine grid of values of theta. All probability densities are standardized by a normalizing constant.", fig.pos="H"}
+knitr::include_graphics("./output/figures/figure6.png")
+```
+
+
+The archaeologist then focuses on $P(\theta|x)$, the posterior distribution. The posterior will help them to make inferences about the probability of $\theta$ and its surrounding uncertainty (Figure 6). The archaeologist can visually represent the estimate of $\theta$ (the expected proportion of dogs with butchery marks at Monico-2, based on the observed data and prior knowledge from the 38 other Monico archaeological sites) and the 90% uncertainty range of its estimate with a graph of the sort in Figure 7. 
+
+```{r include=FALSE, eval=TRUE}
+#library(HDInterval)
+#If we want to use HDI instead of quantiles
+# identify range of highest density interval
+#First, simulate a large number of draws from the posterior distribution
+set.seed(456)
+posterior_samples <- rbeta(1e5, likelihood_k + prior_a, likelihood_N - likelihood_k + prior_b)
+# 90% highest (posterior) density interval
+posterior_hdi_90 <- round(HDInterval::hdi(posterior_samples, credMass = 0.90), 2) #0.23, 0.53
+
+# center value of theta (posterior median)
+posterior_median <- qbeta(p = 0.50,
+           likelihood_k + prior_a,
+           likelihood_N - likelihood_k + prior_b,
+           lower.tail = TRUE)
+
+#Hypothesis: what is probability of 0.5 and greater?
+hypothesis_1_over50 <- pbeta(q = 0.50,
+                             likelihood_k + prior_a,
+                             likelihood_N - likelihood_k + prior_b,
+                             lower.tail = FALSE)
+
+data_plot7 <- data.frame(theta_values, posterior_probabilities) %>% 
+  mutate(shade = theta_values > posterior_hdi_90[1] & theta_values < posterior_hdi_90[2])
+
+
+data_plot7 %>% 
+  ggplot(aes(x = theta_values, y = posterior_probabilities))+
+  geom_ribbon(aes(ymin = 0, ymax =posterior_probabilities,  fill = shade))+
+  #h
+  geom_segment(x = posterior_hdi_90[1], y = 0.04, xend = posterior_hdi_90[2], yend = 0.04)+
+  annotate("text", x = posterior_median, y = 0.02, size = 5,
+           label = paste("|—  90% probabillity range  —|"))+
+  #v
+  geom_segment(x = posterior_median, y = 0.04, xend = posterior_median, yend = max(posterior_probabilities),
+               linetype = "dashed")+
+  annotate("text", x = 0.36, y = 0.11, size = 5, label = "50th-percentile", angle = 90)+
+  geom_line(size = 1.5, color = "#6a279a")+
+  scale_fill_manual(values = c("TRUE" = "#6a279a40",
+                               "FALSE" = "#6a279a00"))+
+  scale_y_continuous(expand = expansion(mult = c(0, .01)),
+                     breaks = seq(0,0.2,0.05))+
+  scale_x_continuous(breaks = seq(0,1,0.1),
+                     expand = c(0,0.01))+
+  labs(
+    x = paste("Proportion of Dogs with Butchery Marks at Monico Archaeological Sites (*\u03B8*)"),
+    y = paste("Posterior,  P(*\u03B8*|x)")
+  )+
+  theme(
+    legend.position = "none"
+  )+
+  coord_cartesian(xlim = c(0,0.76)) + theme(axis.title.x = element_markdown(), axis.title.y = element_markdown())
+
+ggsave(filename = "../output/figures/figure7.png",  width = 8, height = 5, units = 'in', dpi = 400)
+```
+
+
+```{r fig7, echo=FALSE, message=FALSE, warning=FALSE, fig.align = "center",out.width= "\\textwidth",fig.cap="Posterior probability distribution with the blue dotted line showing the 50th-percentile estimate $(0.38)$. The solid red line depicts the 90\\% probability density interval $(0.23--0.53)$.", fig.pos="H"}
+knitr::include_graphics("./output/figures/figure7.png")
+```
+
+Unlike the NHST framework, the Bayesian posterior probability enables the archaeologist
+to assign probabilities to hypotheses about parameter values. In this case, the hypothesis is that the value of $\theta$, the proportion
+of dogs butchered at Monico archaeological sites, is greater than 0.5 (50%, Table 6). The values shown in Table 6 are
+inferences resulting from calculations made using the posterior distribution. The archaeologist
+computed the probability that $\theta$ is greater than 0.5 (top left-most value in the table), and the values of $\theta$ at the 5th, 50th, and 95th probability percentiles. Recall, earlier, the archaeologist in conjunction with other scientists proposed that  cut marks would have to appear on at least 50% (or 0.5) of the dog remains at Monico sites in order to consider dogs as “an important food contribution”. However, Table 6 shows that the value of $\theta$ only has a 10% chance of being greater than 50%. Therefore, the inference that dogs were a substantial part of the Monico diet is not highly probable. For example, the archaeologist thinks, “if a meteorologist told me that there was a 10% chance of rain today, I would not carry an umbrella.”
+
+Importantly, the uncertainty around the value of $\theta$ can also be expressed as a probability
+interval. In the Bayesian framework, these probability intervals are known as the *highest probability density intervals* (HPDIs) and differ from NHST’s confidence intervals (CIs). One of the most important differences is that the interpretation of the HPDI is much more straightforward. The HPDI is the probability of the parameter given the data, whereas the CI is not a probability about the value of the parameter estimate. In the case of $\theta$, Figure 7 tells the archaeologist that there is quite a lot of uncertainty around the true value of $\theta$. For example, the median, or 50^th^ percentile, estimate
+of $\theta$ is 0.38, meaning that, once the available prior information from the literature and the Monico–2 data are incorporated, it is most likely that the Monico-2 occupants included dogs in their diet 38% of the time. However, the 90% HPDI spans 0.23 to 0.53 (23% to 53%), meaning that, based on our prior information and current data, there is a 90% chance that $\theta$  is between these values and only a 10% chance that it is larger or smaller than these limits. Although the variation in $\theta$ reaches over 50%, it does so only slightly and again is not very probable. These results mean that the archaeologist is very uncertain about the occupants' proclivity to butcher dogs (presumably) for dietary purposes at Monico-2, especially considering the small sample size and the fact that the current Monico-2 data differ quite markedly from those found at other sites.
+
+```{r table6, echo=FALSE, eval=TRUE}
+
+table_6 <- dplyr::tibble(posterior_median, paste(posterior_hdi_90[1], "-", posterior_hdi_90[2], sep = ""), hypothesis_1_over50)
+
+kb <- kable(table_6, digits = 2, col.names =c("Posterior Median", "90% HPDI", "P($\\theta$ > 0.5)"), caption = "Inferences about $\\theta$ from posterior probability distribution")
+kableExtra::kable_styling(kb, bootstrap_options = "hover", full_width = F)%>%
+  kable_styling(latex_options = "HOLD_position")
+```

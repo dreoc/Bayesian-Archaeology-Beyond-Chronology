@@ -1,0 +1,94 @@
+---
+title: "**BEYOND CHRONOLOGY, USING BAYESIAN INFERENCE TO EVALUATE HYPOTHESES IN ARCHAEOLOGY**"
+author: 
+  - ERIK OTÁROLA-CASTILLO^1^*, 
+  - MELISSA G. TORQUATO^1^,
+  - JESSE WOLFHAGEN^1^,
+  - MATTHEW E. HILL, JR.^2^,
+  - AND CAITLIN E. BUCK^3^
+  - ^1^Department of Anthropology, Purdue University, West Lafayette, Indiana, USA
+  - ^2^Department of Anthropology, University of Iowa, Iowa City, Iowa, USA
+  - ^3^School of Mathematics and Statistics, University of Sheffield, Sheffield, UK
+  - " "
+  - "**Preprint of Manuscript accepted for publication by Advances in Archaeological Practice.**"
+  - "*Corresponding author"
+  -   "email: eoc@purdue.edu"
+date: 
+  - " "
+  - "*R Markdown version last compiled on `r format(Sys.time(), '%A %B %d %Y, %X, %Z')`*"
+  - " "
+indent: yes
+header-includes:
+    - \usepackage{setspace}\doublespacing
+    - \usepackage[labelfont=bf,width=1\textwidth,justification=raggedright,singlelinecheck=false]{caption}
+    - \captionsetup[figure]{labelfont=bf}
+    - \usepackage[pagewise]{lineno}
+output: 
+  pdf_document: 
+    latex_engine: xelatex
+    keep_md: false
+  word_document: default
+  html_document: default
+link-citations: yes
+bibliography: beyondchronologylibrary.bib
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,warning = FALSE, message = FALSE)
+options(kableExtra.auto_format = FALSE)
+library(kableExtra)
+library(dplyr)
+library(knitr)
+library(HDInterval)
+library(ggplot2)
+library(tidyr)
+library(ggrepel)
+library(ggtext)
+```
+\newpage
+## ABSTRACT
+
+```{r child= "rmd_files/0_ABSTRACT.Rmd"}
+
+```
+
+## INTRODUCTION
+
+```{r child= "rmd_files/1_INTRODUCTION.Rmd"}
+
+```
+
+## THE MONICO CULTURE: A SIMPLIFIED APPLICATION OF BAYESIAN STATISTICS
+
+
+```{r child= "rmd_files/2_A_SIMPLIFIED_APPLICATION_OF_BAYESIAN_STATISTICS.Rmd"}
+
+```
+
+## WHAT IS BAYES’ THEOREM
+
+```{r child= "rmd_files/3_WHAT_IS_BAYES_THEOREM.Rmd"}
+
+```
+
+## LINKING BAYES’ THEOREM TO DATA AND HYPOTHESES
+
+```{r child= "rmd_files/4_LINKING_BAYES_THEOREM_TO_DATA_AND_HYPOTHESES.Rmd"}
+
+```
+
+## CONCLUSIONS
+
+```{r child= "rmd_files/5_CONCLUSIONS.Rmd"}
+
+```
+
+## ACKNOWLEDGMENTS
+
+```{r child= "rmd_files/6_ACKNOWLEDGMENTS.Rmd"}
+
+```
+
+
+
+
